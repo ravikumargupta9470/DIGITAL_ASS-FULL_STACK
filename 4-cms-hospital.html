@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CMS Hospital Cognitive Ability </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script>
+function cal()
+{
+
+
+    
+let data2= document.frm.brother.value;
+let sisters=document.frm.sisters.value;
+
+            
+            const textbox2 = parseInt(data2) + 2;
+            const textbox3 = textbox2 * 2;
+            const textbox4 = textbox3 + 1;
+            const textbox5 = textbox4 * 5;
+
+            const textbox6 = parseInt(textbox5) + parseInt(sisters);
+            document.frm.text2.value=textbox2;
+            document.frm.text3.value=textbox3;
+            document.frm.text4.value=textbox4;
+            document.frm.text5.value=textbox5;
+            document.frm.text6.value=textbox6;
+            
+        
+}
+
+
+    </script>
+    <style>
+
+
+#form{
+
+color:white;
+border-radius:5px;
+height:auto;
+width:550px;
+opacity: 0.85;
+border-radius: 30px;
+margin: 5px;
+padding: 5px;
+background-image: url('cms2.jpg');
+
+}
+    </style>
+</head>
+<body style="background-image: url('cms.jpg');">
+
+   <center> <div id="form">
+
+
+        <h1>CMS Hospital Cognitive Ability</h1>
+        <form id="cognitiveForm" name="frm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+    
+            <label for="brothers">Textbox 2:</label>
+            <input type="number" id="brothers"  name="text2" readonly><br>
+    
+            <label for="textbox3">Textbox 3:</label>
+            <input type="number" id="textbox3" name="text3" readonly><br>
+    
+            <label for="textbox4">Textbox 4:</label>
+            <input type="number" id="textbox4" name="text4" readonly><br>
+    
+            <label for="textbox5">Textbox 5:</label>
+            <input type="number" id="textbox5"  name="text5" readonly><br>
+    
+            <label for="textbox6">Textbox 6:</label>
+            <input type="number" id="textbox6" name="text6" readonly><br>
+    
+            <label for="patientBrothers">Number of Brothers:</label>
+            <input type="number" id="patientBrothers" name="brother" required><br>
+    
+            <label for="patientSisters">Number of Sisters:</label>
+            <input type="number" id="patientSisters"  name="sisters"required><br>
+    
+            <div id="error1"></div>
+            <div id="error2"></div>
+            <div id="error3"></div>
+            <div id="error4"></div>
+            <div id="error5"></div>
+            <div id="error6"></div>
+            <div id="errorValidation"></div>
+    
+            <button type="button" id="analyzeButton" class="btn btn-primary" onclick="cal();">ANALYZE</button>
+        </form>
+    
+        <div id="result"></div>
+    
+    </div>
+   
+    <script>
+        document.getElementById("analyzeButton").addEventListener("click", function () {
+            // Reset error messages
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`error${i}`).textContent = "";
+            }
+            document.getElementById("errorValidation").textContent = "";
+            document.getElementById("result").textContent = "";
+
+            // Get user inputs
+            const name = document.getElementById("name").value;
+            const numBrothers = parseInt(document.getElementById("brothers").value);
+            const numSisters = parseInt(document.getElementById("patientSisters").value);
+
+            // Validate and perform calculations
+            if (isNaN(numBrothers)) {
+                document.getElementById("error2").textContent = "Please enter a valid number of brothers.";
+                return;
+            }
+
+            const textbox2 = numBrothers + 2;
+            const textbox3 = textbox2 * 2;
+            const textbox4 = textbox3 + 1;
+            const textbox5 = textbox4 * 5;
+
+            const textbox6 = textbox5 + numSisters;
+
+            
+
+            
+
+            if (isNaN(textbox3) || isNaN(textbox4) || isNaN(textbox5)) {
+                document.getElementById("error3").textContent = "Invalid calculation in Textbox 3, 4, or 5.";
+                return;
+            }
+
+            // Calculate derived brothers and sisters
+            const derivedValue = textbox6 - 25;
+            let derivedBrothers, derivedSisters;
+
+            if (derivedValue >= 10) {
+                derivedBrothers = Math.floor(derivedValue / 10);
+                derivedSisters = derivedValue % 10;
+            } else if (derivedValue > 0) {
+                derivedBrothers = 0;
+                derivedSisters = derivedValue;
+            } else {
+                derivedBrothers = 0;
+                derivedSisters = 0;
+            }
+
+            // Validate with user inputs
+            const patientBrothers = parseInt(document.getElementById("patientBrothers").value);
+
+            if (patientBrothers === derivedBrothers && numSisters === derivedSisters) {
+                document.getElementById("errorValidation").textContent = "Good memory and problem solving skills";
+            } else {
+                document.getElementById("errorValidation").textContent = "Retardation in memory and problem solving skills";
+            }
+        });
+    </script>
+</body>
+</html>

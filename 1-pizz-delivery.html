@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<style>
+
+
+
+body{
+  font-family:cursive;
+  font-size:25px;
+  background-image:url('pizza.jpg');
+
+  background-size:cover;
+}
+h1{
+  
+  font-size:80px;
+}
+form{
+  background-color:#211e1e;
+  color:white;
+  border-radius:5px;
+  height:auto;
+  width:450px;
+  opacity: 0.7;
+}
+#wrapper{
+  margin-top:-50px;
+ float:center;
+}
+input{
+  
+  font-size:17px;
+  font-weight:bold;
+}
+</style>
+<script>  
+  function validateform(){  
+  var name=document.myform.name.value;  
+  var password=document.myform.mob.value;  
+    
+  if (name==null || name==""){  
+    alert("Name can't be blank");  
+    return false;  
+  }else if(password.length<10){  
+    alert("mobile number should be 10 digit.");  
+    return false;  
+    }  
+
+    else{
+
+      alert(" ✅ your  pizza booked successfully and will be delivered with in 60 min. Thank you for oder 😄");  
+
+
+    }
+  }  
+  </script>  
+
+</head>
+<body style="margin-top: 40px;">
+  <div id="wrapper">
+  <div id="inputs">
+  <div>
+<center><form name="myform" method="post" action="#" onsubmit="return validateform()" > 
+  <h1>Pizza Order</h1>
+  First name: <input type="text" name="name" required ><br/>
+  Mobile No <input type="text" name="mob" required><br/>
+  Address: <input type="text" name="lastname" placeholder="address" required><br/>
+  email-Id:<input type="email" name="email" >
+ <br/>
+    <p>Pizza Varities</p>
+    <input type='checkbox' checked>Cheese ((100₹))
+    <input type='checkbox'>Mushrooms (100₹)
+    <input type='checkbox'>Veg(80₹)
+    <p>Comments:</br></p>
+	  <textarea></textarea>
+	  <p></p>
+  <input type="submit" class="btn btn-danger" value="Submit" value="register">
+</form>
+</div>
+</div>
+</body>
+</html>

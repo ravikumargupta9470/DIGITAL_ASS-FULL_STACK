@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>COVID-19 Tracker Using HTML</title>
+</head>
+<body style="text-align: center; background-image: url('covid.jpg');">
+    <div >
+
+
+
+        <h1>COVID-19 Tracker of Cases</h1>
+        <div>
+            <h2 style="color: white; background-color:green;padding: 5px; border: 1px solid red; border-radius: 20px;">State : Fair</h2>
+            <label for="state1">New Cases:</label>
+            <input type="text" id="state1" value="0">
+        </div>
+        <div>
+            <h2 style="color: white; background-color: orange;padding: 5px; border: 1px solid red; border-radius: 20px;">State :Stable </h2>
+            <label for="state2">New Cases:</label>
+            <input type="text" id="state2" value="0">
+        </div>
+        <div>
+            <h2 style="color: white; background-color: red;padding: 5px; border: 1px solid red; border-radius: 20px;">State: Critical</h2>
+            <label for="state3">New Cases:</label>
+            <input type="text" id="state3" value="0">
+        </div>
+        <button id="updateButton"  class="btn btn-warning">Add Cases</button>
+        
+
+    </div>
+    
+    <script>
+        document.getElementById("updateButton").addEventListener("click", function () {
+            const state1Cases = parseInt(document.getElementById("state1").value);
+            const state2Cases = parseInt(document.getElementById("state2").value);
+            const state3Cases = parseInt(document.getElementById("state3").value);
+
+            const states = [
+                { name: "State 1", cases: state1Cases },
+                { name: "State 2", cases: state2Cases },
+                { name: "State 3", cases: state3Cases },
+            ];
+
+            // Find the maximum cases
+            let maxCases = -1;
+            let maxStates = [];
+
+            for (const state of states) {
+                if (state.cases > maxCases) {
+                    maxCases = state.cases;
+                    maxStates = [state.name];
+                } else if (state.cases === maxCases) {
+                    maxStates.push(state.name);
+                }
+            }
+
+            // Alert the maximum cases state(s)
+            if (maxStates.length === 1) {
+                alert(`${maxStates[0]} has the maximum cases: ${maxCases}`);
+            } else {
+                alert(`States with maximum cases (${maxCases}): ${maxStates.join(", ")}`);
+            }
+        });
+    </script>
+</body>
+</html>
